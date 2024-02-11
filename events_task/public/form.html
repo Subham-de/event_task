@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .display_1 {
+            border: 1px solid #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        form {
+            border: 2px solid red;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        form h4 {
+            font-size: 22px;
+            font-style: italic;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        dd {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        //element state events - onblur,onchange,onfocous,onchecked;
+        //form - onsumbit();onrest()
+        
+        function validInputfocus() {
+            var input_text = document.getElementById('input_text');
+            input_text.innerHTML = 'Name only in Block letter'.fontcolor('red')
+        }
+
+        function validInputblur() {
+            var username = document.getElementById('username').value;
+            document.getElementById('username').value = username.toUpperCase();
+            document.getElementById('input_text').innerHTML = ''
+        }
+        function verifyInput() {
+            var input_text = document.getElementById('username').value;
+            if (input_text.length == 6) {
+                document.getElementById('password').focus();
+                document.getElementById('username').disabled = true;
+            }
+        }
+        function verifyPassword() {
+            var password = document.getElementById('password').value;
+            if (password.length == 6) {
+                document.getElementById('state').focus();
+                document.getElementById('password').disabled = true;
+            }
+        }
+
+        function verifySelect() {
+            var state = document.getElementById('state').value;
+            var lang = document.getElementById('lang');
+            if (state) {
+                lang.innerHTML = `you selected : ${state}`
+            }
+        }
+
+        function verifySumit() {
+            alert('form is sumbitted')
+        }
+
+        function verifyPost() {
+            form_login.submit()
+        }
+
+        
+        document.copy=function(){
+            alert('copy not allowed');
+            return false;
+        }
+        function copy(){
+            var clipboard = document.getElementById('clipboard');
+             clipboard.innerHTML= 'clipboard - text copied';
+             clipboard.innerHTML=""
+        }
+        function cut(){
+            var clipboard = document.getElementById('clipboard');
+            clipboard.innerHTML= 'clipboard - text cut'
+        }
+
+        function paste(){
+            var clipboard = document.getElementById('clipboard');
+            clipboard.innerHTML= 'clipboard - text copied'
+        }
+
+    </script>
+</head>
+
+<body>
+    <h2>ElementstateEvents | formevents | clipboardevents </h2>
+    <div class="display_1">
+        <form method="get" onsubmit="verifySumit()" name="form_login">
+            <h4>Fill the following form : </h4>
+            <dl>
+                <dt>UserName</dt>
+                <dd><input type="text" onkeyup="verifyInput()" placeholder="Enter Username" id="username"
+                        onfocus="validInputfocus()" onblur="validInputblur()"></dd>
+                <dd id="input_text"></dd>
+                <dt>Password</dt>
+                <dd><input type="password" placeholder="Enter Your Password" id="password" onkeyup="verifyPassword()">
+                </dd>
+                <dt>Select Your Programming</dt>
+                <dd>
+                    <select name="state" id="state" onchange="verifySelect()">
+                        <optgroup label="First choice">
+                            <option value="javascript">JavaScript</option>
+                            <option value="php">PHP</option>
+                            <option value="java">Java</option>
+                        </optgroup>
+                        <optgroup label="Second choice">
+                            <option value="ruby">Ruby</option>
+                            <option value="c">C lang</option>
+                            <option value="GO">GO</option>
+                        </optgroup>
+                    </select>
+                </dd>
+                <dd id="lang"></dd>
+                <dt>Select your option</dt>
+                <dd>
+                    A <input type="checkbox" value="a" id="gradeA" name="grade">
+                    B <input type="checkbox" value="b" id="gradeB" name="grade">
+                    C <input type="checkbox" value="c" id="gradeC" name="grade">
+                </dd>
+                <dt>Message</dt>
+                <dd>
+                    <textarea oncut="cut()" oncopy="copy()" onpaste="paste()"  name="message" id="message" cols="50" rows="10"></textarea>
+                </dd>
+                <dd id="clipboard"></dd>
+                <div>
+                    <button type="submit">Submit</button>
+                    <button type="button" onclick="verifyPost()">Post</button>
+                    <button type="button">Cancel</button>
+                </div>
+            </dl>
+        </form>
+    </div>
+</body>
+
+</html>

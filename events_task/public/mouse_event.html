@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mouse_event</title>
+    <style>
+        .grid_style{
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+    </style>
+    <script>
+        function displayMessage(){
+            document.getElementById('msg').innerHTML = `<b>50% off on purchase</b>`;
+        }
+        function hideMessage(){
+            document.getElementById('msg').innerHTML = ''
+        }
+        function Imagehover(src){
+            document.getElementById('img_display').src = src;
+        }
+    </script>
+</head>
+<body>
+    <h2>Mouse Event</h2>
+    <p>Mouseover and Mouseout Events</p>
+        <div class="grid_style">
+        <div>
+         <div>
+            <img src="./assets/watches.png" height="150"  alt="test" onmouseover="Imagehover(this.src)">
+         </div>
+         <div>
+            <img src="./assets/backpacks.png" height="150" alt="test" onmouseover="Imagehover(this.src)">
+         </div>
+         <div>
+            <img src="./assets/beauty.png" height="150" alt="test" onmouseover="Imagehover(this.src)">
+         </div>
+         <div>
+            <img src="./assets/loungewear.png" height="150" alt="test" onmouseover="Imagehover(this.src)">
+         </div>
+         <div>
+            <img src="./assets/ethnic wera.png" height="150" alt="test" onmouseover="Imagehover(this.src)">
+         </div>
+        </div>
+        <div>
+            <img id="img_display"  alt="test_1" height="200" width="200" onmouseover="displayMessage()" onmouseout="hideMessage()" src="./assets/bi-cycle.jpg">
+            <p id="msg" style="font-size: 30px;"></p>
+        </div>
+    </div>
+</body>
+</html>

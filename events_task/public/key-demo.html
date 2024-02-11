@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=q, initial-scale=1.0">
+    <title>key-demo</title>
+    <style>
+        input {
+            width: 200px;
+            height: 10px;
+            padding: 10px;
+        }
+
+        .display {
+            border: 2px solid red;
+            width: 20%;
+            padding: 20px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        dt {
+            font-size: 19px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        button{
+            font-size: 16px;
+            background-color: brown;
+            color: white;
+            border: none;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function showuserId(value){
+            var userError = document.getElementById('userid_error')
+            fetch('./json/verify.json')
+            .then((res)=>{return res.json()})
+            .then(ele=>{
+                for(var item of ele){
+                    if(item.userId==value){
+                        userError.innerHTML='Username already taken - try another'.fontcolor('red')
+                        break;
+                    }
+                    else{
+                        userError.innerHTML='Username avialable'.fontcolor('green')
+                    }
+                }
+            })
+            console.log(value)
+        } 
+        function VerifyCapson(e){
+            var pwd_error = document.getElementById('password_error');
+
+            if(e.keyCode>=65 && e.keyCode <= 90){
+                pwd_error.style.display= 'block'
+            }
+            else{
+                pwd_error.style.display='none'
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Keyboard Events</h2>
+    <div class="display">
+        <dl>
+            <dt>UserName</dt>
+            <dd><input type="text" name="userid" placeholder="enterUserId" id="userid" onkeyup="showuserId(this.value)"></dd>
+            <dd id="userid_error"></dd>
+            <dt>Password</dt>
+            <dd><input type="password" name="password" id="password" placeholder="enter password" onkeypress="VerifyCapson(event)"></dd>
+            <dd id="password_error" style="color: goldenrod; display: none;">Warning caps- On</dl>
+            <button>Sumbit</button>
+    </div>
+    </dl>
+    </div>
+</body>
+
+</html>

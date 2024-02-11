@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ButtonClick</title>
+    <script>
+        document.oncontextmenu=function(){
+            alert('right click is not allowed');
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <h2>Button Events</h2>
+    <img src="./assets/watches.png" alt="test" height="300" width="300" ondblclick="window.open('./assets/watches.png',)">
+    <p>Press double click - open new window</p>
+</body>
+</html>

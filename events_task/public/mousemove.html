@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseMove</title>
+    <script>
+        function GetPostion(x,y){
+            var flag = document.querySelector('img');
+            flag.style.position='fixed';
+            flag.style.left=x+'px';
+            flag.style.top=y+'px';
+            document.querySelector('div').innerHTML=`x=${x}<br>y=${y}`
+        }
+    </script>
+</head>
+<body onmousemove="GetPostion(event.clientX,event.clientY)">
+    <h2>onmousemove event</h2>
+    <div style="height: 1000px;"></div>
+        <img src="./assets/flag.gif" alt="test" height="100" width="100" >
+</body>
+</html>
